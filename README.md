@@ -113,5 +113,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Happy Coding! 🎉
 
 ---
-
-Feel free to customize this README file further based on your specific needs and preferences!
