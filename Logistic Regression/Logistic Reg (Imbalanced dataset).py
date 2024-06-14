@@ -90,6 +90,35 @@ y_predgs = gs.predict(X_test)
 y_predprobgs = gs.predict_proba(X_test)
 
 #Evaluating metrics using GridSearchCV 
-print("Accuracy Score is : ",accuracy_score(y_test,y_predgs))
-print("Confusion Matrics : \n",confusion_matrix(y_test,y_predgs))
-print("Classification Report :  \n",classification_report(y_test,y_predgs))
+acc = ("Accuracy Score is : ",accuracy_score(y_test,y_predgs))
+cm = ("Confusion Matrics : \n",confusion_matrix(y_test,y_predgs))
+cr = ("Classification Report :  \n",classification_report(y_test,y_predgs))
+
+
+#USING RandomizedSearchCV
+model = LogisticRegression()
+
+#Initialize RandomizedSearchCV
+rs = RandomizedSearchCV(estimator=model,
+                        param_distributions=params,
+                        scoring='accuracy',
+                        cv=cv,
+                        n_jobs=-1
+                       )
+
+print(rs)
+rs.fit(X_train,y_train)
+
+#Evalauting Best score,params
+print("best_params_ : ", rs.best_params_)
+print("best_score_ : ", rs.best_score_)
+
+
+#making prediction
+y_predrs = rs.predict(X_test)
+y_predprobrs = rs.predict_proba(X_test)
+
+#Evaluating metrics using GridSearchCV 
+print("Accuracy Score is : ",accuracy_score(y_test,y_predrs))
+print("Confusion Matrics : \n",confusion_matrix(y_test,y_predrs))
+print("Classification Report :  \n",classification_report(y_test,y_predrs))
