@@ -6,3 +6,5 @@ seaborn
 statsmodels
 imblearn
 xgboost
+nltk
+spacy
